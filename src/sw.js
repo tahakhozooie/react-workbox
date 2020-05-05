@@ -2,6 +2,9 @@ importScripts('https://storage.googleapis.com/workbox-cdn/releases/4.0.0/workbox
 
 if (workbox) {
 
+    // workbox.setConfig({ debug: true });
+
+
     console.log(`WB IS OK`);
 
     workbox.core.setCacheNameDetails({
@@ -12,14 +15,11 @@ if (workbox) {
 
     workbox.precaching.precacheAndRoute([]);
 
-
     self.addEventListener("message", event => {
-        // console.log("GG");
         if (event.data && event.data.type === "SKIP_WAITING") {
             skipWaiting();
         }
     });
-
 
     workbox.routing.registerRoute(
         /\.(?:png|jpg|jpeg|svg|gif)$/,
